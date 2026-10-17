@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Tmejs/MeowDoku/schemas/puzzle-pack-v1.schema.json",
+  "title": "MeowDoku puzzle pack v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "packId", "puzzles"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "packId": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
+    "puzzles": {
+      "type": "array",
+      "minItems": 100,
+      "maxItems": 100,
+      "items": {"$ref": "#/$defs/puzzle"}
+    }
+  },
+  "$defs": {
+    "puzzle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "difficulty", "size", "regions", "solutionColumns"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^(easy|medium|hard|expert)-[0-9]{3}$"},
+        "difficulty": {"enum": ["easy", "medium", "hard", "expert"]},
+        "size": {"enum": [5, 6, 8, 10]},
+        "regions": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {"type": "integer", "minimum": 0, "maximum": 9}
+          }
+        },
+        "solutionColumns": {
+          "type": "array",
+          "items": {"type": "integer", "minimum": 0, "maximum": 9}
+        }
+      }
+    }
+  }
+}
