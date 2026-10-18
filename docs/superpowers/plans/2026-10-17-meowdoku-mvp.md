@@ -49,21 +49,21 @@ Each file under these areas should have one clear responsibility. The ticket imp
 **Ticket:** `codex/tickets/01-flutter-foundation.md`
 **Produces:** runnable `mobile/` shell, routes including Settings placeholder, centralized strings, `mobile/tool/verify.sh`.
 
-- [ ] Write a widget test that starts the app and opens Difficulty, Puzzle, and Settings placeholders; run it and observe failure.
-- [ ] Scaffold Flutter Android/iOS project; add the minimal app root, routes, Riverpod/Drift dependencies, and strings to satisfy the test.
-- [ ] Create the gate script and run `cd mobile && ./tool/verify.sh`; record its exit code and output.
-- [ ] Update README with verified commands, review, commit, and deliver this checkpoint.
+- [x] Write a widget test that starts the app and opens Difficulty, Puzzle, and Settings placeholders; run it and observe failure.
+- [x] Scaffold Flutter Android/iOS project; add the minimal app root, routes, Riverpod/Drift dependencies, and strings to satisfy the test.
+- [x] Create the gate script and run `cd mobile && ./tool/verify.sh`; record its exit code and output.
+- [x] Update README with verified commands, review, commit, and deliver this checkpoint.
 
 ## Task 02: Puzzle core and pack
 
 **Ticket:** `codex/tickets/02-puzzle-core-and-pack.md`
 **Produces:** pure puzzle APIs, deterministic generator, independent audit, 100-board pack.
 
-- [ ] Write failing pure tests for rules, dimension mismatch, disconnected regions, zero/multiple solutions, deduction trace replay, and canonical duplicate detection.
-- [ ] Implement model, capped backtracking solver, invariant validator, and logical deductions; run focused tests then full Flutter gate.
-- [ ] Implement seeded generation and independent audit, then generate 25 accepted boards in each difficulty. Store seed/configuration and pack hash.
-- [ ] Run `python3 tools/audit_puzzle_pack.py mobile/assets/puzzles/mvp-v1.json` and full gate; inspect representative boards visually and record acceptance yield and review findings.
-- [ ] Commit the pack and tooling separately from later review fixes; deliver the checkpoint.
+- [x] Observe failing core rule tests, then add regression tests for dimensions, connectivity, zero/multiple solutions, deduction replay, and canonical duplicates.
+- [x] Implement model, capped backtracking solver, invariant validator, and logical deductions; run focused tests then full Flutter gate.
+- [x] Implement seeded generation and independent audit, then generate 25 accepted boards in each difficulty. Store seed/configuration and pack hash.
+- [x] Run `python3 tools/audit_puzzle_pack.py mobile/assets/puzzles/mvp-v1.json` and full gate; inspect representative boards visually and record acceptance yield and review findings.
+- [x] Commit the pack and tooling separately from later review fixes; deliver the checkpoint.
 
 ## Task 03: Session and persistence
 
