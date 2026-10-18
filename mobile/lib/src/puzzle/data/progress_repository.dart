@@ -231,7 +231,7 @@ final class ProgressRepository {
       if (puzzle.difficulty != data['difficulty']) return null;
       final marks = _parseMarks(jsonDecode(data['cell_marks_json'] as String));
       final undoRaw = jsonDecode(data['undo_json'] as String);
-      if (undoRaw is! List || undoRaw.length > 10000) return null;
+      if (undoRaw is! List || undoRaw.length > maxUndoDepth) return null;
       final history = undoRaw.map(_parseMarks).toList();
       final session = PuzzleSession.restore(puzzle, marks, history);
       if (session.isComplete) return null;

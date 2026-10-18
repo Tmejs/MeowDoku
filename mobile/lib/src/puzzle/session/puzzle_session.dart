@@ -6,6 +6,8 @@ enum CellMark { empty, x, cat }
 
 enum SessionFeedback { missed }
 
+const maxUndoDepth = 1000;
+
 sealed class SessionAction {
   const SessionAction();
 }
@@ -143,6 +145,7 @@ abstract final class SessionReducer {
     if (current == next) return SessionResult(session, changed: false);
     final marks = session.marks.toList()..[index] = next;
     final history = [...session.undoHistory, session.marks];
+    if (history.length > maxUndoDepth) history.removeAt(0);
     return SessionResult(
       PuzzleSession._(session.puzzleId, session.size, marks, history),
       changed: true,

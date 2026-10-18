@@ -101,4 +101,17 @@ void main() {
       throwsArgumentError,
     );
   });
+
+  test('undo history remains within a durable bound after repeated edits', () {
+    var session = PuzzleSession.empty(puzzle);
+    for (var index = 0; index < 1001; index++) {
+      session = SessionReducer.apply(
+        puzzle,
+        session,
+        const MarkX(0, 1),
+      ).session;
+    }
+    expect(session.undoDepth, lessThanOrEqualTo(1000));
+    expect(session.markAt(0, 1), CellMark.x);
+  });
 }
