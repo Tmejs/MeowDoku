@@ -66,7 +66,3 @@ The implementation may refine Dart names and field types, but tickets must keep 
 | `expert` | Expert | 10×10 | 25 |
 
 Difficulty is reviewed from the logical deduction trace and playtesting, not inferred solely from size. The first pack is immutable after release. A later pack has a new `packId`; unchanged boards retain their IDs, while changed or added boards receive new IDs so old progress never points to different content.
-
-## SoftwareFactory handoff
-
-The existing SoftwareFactory v1 workflow is repo-local and its job validator currently fixes its target repository to `Tmejs/SoftwareFactory`. It cannot execute a MeowDoku ticket unchanged. The ticket plan therefore includes a prerequisite to make that workflow usable for this target repository. Until then, these tickets are planning records, not active factory jobs. Do not create `factory/jobs/` state files or claim a factory run from this repo by merely reading the tickets.

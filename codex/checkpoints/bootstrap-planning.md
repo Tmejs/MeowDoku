@@ -21,3 +21,5 @@ An independent planning review read the MVP design, app schema, JSON Schema, pla
 - Flutter formatting, analysis, tests, build, device smoke checks, and puzzle-pack audit are inapplicable: the app and pack have not been implemented.
 
 The first development checkpoint begins only after `main` is synchronized with `origin/main` and follows `codex/tickets/01-flutter-foundation.md`; SoftwareFactory execution also requires Ticket 00 in its separate repository.
+
+**Update, 2026-10-18:** The SoftwareFactory prerequisite above was removed from the active plan at the user's request. This record preserves the original bootstrap decision; the current ticket index and plan govern future work.
