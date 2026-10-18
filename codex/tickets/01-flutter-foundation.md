@@ -27,4 +27,4 @@ Create `mobile/` with Flutter's generated platform projects, an app root, empty 
 
 ## Dependencies
 
-Ticket 00 for SoftwareFactory execution; no product-code dependency.
+None. Start from synchronized `main` on a fresh checkpoint branch.

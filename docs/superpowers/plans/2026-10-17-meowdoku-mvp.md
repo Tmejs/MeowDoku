@@ -1,6 +1,6 @@
 # MeowDoku MVP Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking. Each ticket is a separate checkpoint and, after Ticket 00, may be frozen into a SoftwareFactory job.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking. Each ticket is a separate checkpoint.
 
 **Goal:** Deliver an original offline Flutter cat logic game with four difficulty choices and 100 static, uniquely solvable puzzles.
 
@@ -19,7 +19,6 @@
 - Preserve one unfinished session per difficulty, durable completion history, and the most recent Continue target.
 - Use original art and branding; no score, hearts, currency, ads, accounts, backend, leaderboard, or runtime puzzle generation in the MVP.
 - Each implementation ticket starts from synchronized `main` on a new checkpoint branch and receives independent review before push.
-- SoftwareFactory v1 cannot target this repository unchanged; Ticket 00 is a prerequisite for factory execution.
 
 ## Review Focus
 
@@ -44,17 +43,6 @@
 | `codex/checkpoints/` | checkpoint verification and review evidence |
 
 Each file under these areas should have one clear responsibility. The ticket implementer chooses final filenames and records any intentional deviation in that checkpoint's plan/spec.
-
-## Task 00: Factory target support
-
-**Ticket:** `codex/tickets/00-factory-target-support.md`
-**Target:** separate SoftwareFactory repository.
-
-- [ ] Write tests there for a MeowDoku target packet, preserved SoftwareFactory target behavior, incorrect baseline/target combinations, and safe artifact paths; run them and observe failure.
-- [ ] Generalize intake, resume, validation, and durable job-location documentation to make those tests pass.
-- [ ] Run that repository's full unit gate and a disposable MeowDoku-target dry run; record review evidence and deliver its checkpoint under that repository's Git rules.
-
-This task changes no MeowDoku product files. The human's current request authorizes preparing the ticket, not starting the separate repository change in this planning phase.
 
 ## Task 01: Flutter foundation
 
@@ -122,4 +110,4 @@ This task changes no MeowDoku product files. The human's current request authori
 
 ## Execution boundary
 
-This planning checkpoint ends after repository bootstrap, schema, tickets, and plan are reviewed and synchronized. Product code begins in Ticket 01 during a later implementation phase. Ticket 00 must be completed in SoftwareFactory before using that workflow on this repository.
+The planning bootstrap is complete. Product code begins in Ticket 01, which starts from synchronized `main` on a fresh checkpoint branch.
