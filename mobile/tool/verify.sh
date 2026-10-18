@@ -7,6 +7,8 @@ FLUTTER_BIN="${FLUTTER_BIN:-flutter}"
 SDK_BIN="$(dirname "$(command -v "$FLUTTER_BIN")")"
 DART_BIN="${DART_BIN:-$SDK_BIN/dart}"
 
-"$DART_BIN" format --output=none --set-exit-if-changed lib test
+"$DART_BIN" format --output=none --set-exit-if-changed lib test tool
 "$FLUTTER_BIN" analyze --no-pub
 "$FLUTTER_BIN" test --no-pub
+python3 -m unittest discover -s ../tools -p 'test_*.py'
+python3 ../tools/audit_puzzle_pack.py assets/puzzles/mvp-v1.json
