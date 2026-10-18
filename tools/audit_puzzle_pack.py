@@ -8,6 +8,7 @@ import re
 from collections import Counter
 from pathlib import Path
 
+from deduction_rules import trace
 from puzzle_rules import SIZES, canonical, validate
 
 
@@ -25,6 +26,12 @@ def audit(pack):
     forms = set()
     for index, puzzle in enumerate(puzzles):
         issues = validate(puzzle)
+        if not issues:
+            deduction = trace(puzzle["regions"])
+            if deduction is None or deduction[0] != dict(enumerate(puzzle["solutionColumns"])):
+                issues.append("deduction trace incomplete")
+            elif deduction[1] < {5: 0, 6: 1, 8: 1, 10: 2}[puzzle["size"]]:
+                issues.append("difficulty trace too shallow")
         if issues:
             errors.append(f"puzzle {index}: {', '.join(issues)}")
             continue

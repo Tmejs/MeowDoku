@@ -7,6 +7,7 @@ import json
 import random
 from pathlib import Path
 
+from deduction_rules import trace
 from puzzle_rules import SIZES, canonical, connected, count_solutions, validate
 
 SEED = 20261017
@@ -93,32 +94,6 @@ def improve_regions(board, solution, randomizer, max_steps=30):
     return count
 
 
-def constraint_proof_steps(board, solution):
-    """Rate a unique board using the same single-first order as the Dart trace."""
-    n = len(board)
-    placed = {}
-    proofs = 0
-    while len(placed) < n:
-        used_cols = set(placed.values())
-        used_regions = {board[row][col] for row, col in placed.items()}
-        candidates = {(row, col) for row in range(n) if row not in placed
-                      for col in range(n) if col not in used_cols and board[row][col] not in used_regions
-                      and all(abs(row - r) > 1 or abs(col - c) > 1 for r, c in placed.items())}
-        groups = [{cell for cell in candidates if cell[0] == row}
-                  for row in range(n) if row not in placed]
-        groups += [{cell for cell in candidates if cell[1] == col}
-                   for col in range(n) if col not in used_cols]
-        groups += [{cell for cell in candidates if board[cell[0]][cell[1]] == region}
-                   for region in range(n) if region not in used_regions]
-        single = next((next(iter(group)) for group in groups if len(group) == 1), None)
-        if single is None:
-            row = next(row for row in range(n) if row not in placed)
-            single = (row, solution[row])
-            proofs += 1
-        placed[single[0]] = single[1]
-    return proofs
-
-
 def build():
     randomizer = random.Random(SEED)
     puzzles = []
@@ -141,7 +116,10 @@ def build():
                 unique = improve_regions(regions, solution, randomizer) == 1
             if not unique:
                 continue
-            if constraint_proof_steps(regions, solution) < {5: 0, 6: 1, 8: 1, 10: 2}[n]:
+            deduction = trace(regions)
+            if deduction is None or deduction[0] != dict(enumerate(solution)):
+                continue
+            if deduction[1] < {5: 0, 6: 1, 8: 1, 10: 2}[n]:
                 continue
             signature = (n, canonical(regions))
             if signature in seen:

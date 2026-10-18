@@ -9,9 +9,9 @@ final class PuzzleDefinition {
     required List<List<int>> regions,
     required List<int> solutionColumns,
   }) : regions = UnmodifiableListView(
-         regions.map((row) => UnmodifiableListView(row)),
+         regions.map((row) => UnmodifiableListView(List<int>.of(row))).toList(),
        ),
-       solutionColumns = UnmodifiableListView(solutionColumns);
+       solutionColumns = UnmodifiableListView(List<int>.of(solutionColumns));
 
   final String id;
   final String difficulty;

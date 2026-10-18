@@ -12,13 +12,14 @@ void main() {
         .where((p) => p.difficulty == difficulty)
         .toList();
     final techniques = <DeductionTechnique, int>{};
-    final proofCounts = <int>[];
+    final interactionCounts = <int>[];
     for (final puzzle in puzzles) {
       final trace = PuzzleDeduction.trace(puzzle);
-      proofCounts.add(
+      interactionCounts.add(
         trace
             .where(
-              (step) => step.technique == DeductionTechnique.constraintProof,
+              (step) =>
+                  step.technique == DeductionTechnique.candidateInteraction,
             )
             .length,
       );
@@ -31,7 +32,7 @@ void main() {
       }
     }
     stdout.writeln('$difficulty: $techniques');
-    stdout.writeln('proof counts: $proofCounts');
+    stdout.writeln('interaction counts: $interactionCounts');
     final sample = puzzles.first;
     stdout.writeln(sample.id);
     for (var row = 0; row < sample.size; row++) {

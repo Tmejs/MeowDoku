@@ -6,6 +6,7 @@ import unittest
 from pathlib import Path
 
 from audit_puzzle_pack import audit
+from deduction_rules import trace
 from puzzle_rules import canonical, connected, count_solutions
 
 
@@ -25,6 +26,7 @@ class PuzzlePackTests(unittest.TestCase):
         rows = [[r] * 5 for r in range(5)]
         self.assertEqual(count_solutions(rows), 2)
         self.assertEqual(count_solutions(rows, required={0: 0, 1: 1}), 0)
+        self.assertIsNone(trace(rows))
 
     def test_symmetry_and_region_relabeling(self):
         board = self.pack["puzzles"][0]["regions"]

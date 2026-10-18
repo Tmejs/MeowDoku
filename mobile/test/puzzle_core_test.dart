@@ -127,6 +127,22 @@ void main() {
   test('definition is deeply immutable', () {
     expect(() => unique.regions[0][0] = 4, throwsUnsupportedError);
     expect(() => unique.solutionColumns[0] = 4, throwsUnsupportedError);
+    final inputRegions = [
+      [0, 0],
+      [1, 1],
+    ];
+    final inputSolution = [0, 1];
+    final snapshot = PuzzleDefinition(
+      id: 'easy-999',
+      difficulty: 'easy',
+      size: 2,
+      regions: inputRegions,
+      solutionColumns: inputSolution,
+    );
+    inputRegions[0][0] = 1;
+    inputSolution[0] = 1;
+    expect(snapshot.regions[0][0], 0);
+    expect(snapshot.solutionColumns[0], 0);
   });
 
   test('pack parser rejects corrupt content', () {
@@ -169,7 +185,12 @@ void main() {
       final pack = await PuzzlePackLoader.load();
       expect(pack.packId, 'mvp-v1');
       expect(pack.puzzles.length, 100);
-      const minimumProofs = {'easy': 0, 'medium': 1, 'hard': 1, 'expert': 2};
+      const minimumInteractions = {
+        'easy': 0,
+        'medium': 1,
+        'hard': 1,
+        'expert': 2,
+      };
       for (final puzzle in pack.puzzles) {
         expect(PuzzleValidator.validate(puzzle), isEmpty, reason: puzzle.id);
         final trace = PuzzleDeduction.trace(puzzle);
@@ -177,10 +198,11 @@ void main() {
         expect(
           trace
               .where(
-                (step) => step.technique == DeductionTechnique.constraintProof,
+                (step) =>
+                    step.technique == DeductionTechnique.candidateInteraction,
               )
               .length,
-          greaterThanOrEqualTo(minimumProofs[puzzle.difficulty]!),
+          greaterThanOrEqualTo(minimumInteractions[puzzle.difficulty]!),
           reason: puzzle.id,
         );
         for (final step in trace) {
