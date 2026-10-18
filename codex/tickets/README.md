@@ -6,7 +6,7 @@ These Markdown tickets are the approved MVP's implementation backlog. Execute ea
 | ---: | --- | --- | --- |
 | 1 | [Flutter foundation](01-flutter-foundation.md) | Complete, checkpoint 2 | Runnable app shell and verification gate |
 | 2 | [Puzzle core and pack](02-puzzle-core-and-pack.md) | Complete, checkpoint 3 | Pure solver, generator, verified 100-board asset |
-| 3 | [Session and persistence](03-session-and-persistence.md) | Planned | Edits, undo, completion, durable progress |
+| 3 | [Session and persistence](03-session-and-persistence.md) | Complete, checkpoint 4 | Edits, undo, completion, durable progress |
 | 4 | [Playable screens](04-playable-screens.md) | Planned | Difficulty choice and puzzle play flow |
 | 5 | [Hints and accessibility](05-hints-and-accessibility.md) | Planned | Explained hints and accessible controls |
 | 6 | [Original visual polish](06-original-visual-polish.md) | Planned | Original cat identity and final mobile QA |
