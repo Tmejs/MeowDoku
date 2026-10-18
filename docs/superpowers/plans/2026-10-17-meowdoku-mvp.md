@@ -71,10 +71,10 @@ Each file under these areas should have one clear responsibility. The ticket imp
 **Consumes:** Ticket 02 puzzle model and pack IDs.
 **Produces:** pure session reducer, Drift local store, Riverpod controller.
 
-- [ ] Write failing reducer tests for X/cat/clear/Undo, wrong placement unchanged, and completion without X marks.
-- [ ] Implement the reducer and transient feedback; run focused and full tests.
-- [ ] Write failing persistence tests for resume per difficulty, newest Continue target, replay history, and corrupt/obsolete session recovery.
-- [ ] Implement Drift tables, repository, and controller; run `cd mobile && ./tool/verify.sh`, review, and deliver.
+- [x] Write failing reducer tests for X/cat/clear/Undo, wrong placement unchanged, and completion without X marks.
+- [x] Implement the reducer and transient feedback; run focused and full tests.
+- [x] Write failing persistence tests for resume per difficulty, newest Continue target, replay history, and corrupt/obsolete session recovery.
+- [x] Implement Drift tables, repository, and controller; run `cd mobile && ./tool/verify.sh`, review, and deliver.
 
 ## Task 04: Playable screens
 
